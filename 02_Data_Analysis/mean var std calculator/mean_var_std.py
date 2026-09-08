@@ -14,51 +14,37 @@ def calculate(inputlist):
 
     #Initialise for loop for 3 cases
 
-        #Initialise lists of each operation
-    meanlist = []
-    varlist = []
-    sdlist = []
-    maxlist = []
-    minlist = []
-    sumlist = []
-
-        #Rows logic
-        
-    meanlist.append([float(np.mean(new_array[0])),float(np.mean(new_array[1])),float(np.mean(new_array[2]))])
-    varlist.append([float(np.var(new_array[0])),float(np.var(new_array[1])),float(np.var(new_array[2]))])
-    sdlist.append([float(np.std(new_array[0])),float(np.std(new_array[1])),float(np.std(new_array[2]))])
-    maxlist.append([int(np.max(new_array[0])),int(np.max(new_array[1])),int(np.max(new_array[2]))])
-    minlist.append([int(np.min(new_array[0])),int(np.min(new_array[1])),int(np.min(new_array[2]))])
-    sumlist.append([int(np.sum(new_array[0])),int(np.sum(new_array[1])),int(np.sum(new_array[2]))])
-
-        #Columns logic
-        
-    meanlist.append([float(np.mean(new_array[:,0])),float(np.mean(new_array[:,1])),float(np.mean(new_array[:,2]))])
-    varlist.append([float(np.var(new_array[:,0])),float(np.var(new_array[:,1])),float(np.var(new_array[:,2]))])
-    sdlist.append([float(np.std(new_array[:,0])),float(np.std(new_array[:,1])),float(np.std(new_array[:,2]))])
-    maxlist.append([int(np.max(new_array[:,0])),int(np.max(new_array[:,1])),int(np.max(new_array[:,2]))])
-    minlist.append([int(np.min(new_array[:,0])),int(np.min(new_array[:,1])),int(np.min(new_array[:,2]))])
-    sumlist.append([int(np.sum(new_array[:,0])),int(np.sum(new_array[:,1])),int(np.sum(new_array[:,2]))])
-
-        #Flattened array logic
-        
-    meanlist.append(float(np.mean(new_array.flatten())))
-    varlist.append(float(np.var(new_array.flatten())))
-    sdlist.append(float(np.std(new_array.flatten())))
-    maxlist.append(int(np.max(new_array.flatten())))
-    minlist.append(int(np.min(new_array.flatten())))
-    sumlist.append(int(np.sum(new_array.flatten())))
-
-        #Append complete item lists to output dictionary
-    output_dict['mean'].append(meanlist)
-    output_dict['variance'].append(varlist)
-    output_dict['standard deviation'].append(sdlist)
-    output_dict['max'].append(maxlist)
-    output_dict['min'].append(minlist)
-    output_dict['sum'].append(sumlist)
-
-                
-  # return calculations
-    return output_dict
+    return {
+        'mean': [
+            new_array.mean(axis=0).tolist(),
+            new_array.mean(axis=1).tolist(),
+            new_array.mean().tolist()
+        ],
+        'variance': [
+            new_array.var(axis=0).tolist(),
+            new_array.var(axis=1).tolist(),
+            new_array.var().tolist()
+        ],
+        'standard deviation': [
+            new_array.std(axis=0).tolist(),
+            new_array.std(axis=1).tolist(),
+            new_array.std().tolist()
+        ],
+        'max': [
+            new_array.max(axis=0).tolist(),
+            new_array.max(axis=1).tolist(),
+            new_array.max().tolist()
+        ],
+        'min': [
+            new_array.min(axis=0).tolist(),
+            new_array.min(axis=1).tolist(),
+            new_array.min().tolist()
+        ],
+        'sum': [
+            new_array.sum(axis=0).tolist(),
+            new_array.sum(axis=1).tolist(),
+            new_array.sum().item()
+        ]
+    }
 print(calculate([9,1,5,3,3,3,2,9,0]))
 

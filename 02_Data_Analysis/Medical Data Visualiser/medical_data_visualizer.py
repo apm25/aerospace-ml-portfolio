@@ -4,19 +4,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 1
-df = None
+df = pd.read_csv("medical_examination.csv")
 
 # 2
-df['overweight'] = None
+bmi = df.weight / ((df.height/100)**2)
+df['overweight'] = (bmi > 25).astype(int)
 
 # 3
-
+df['gluc'] = (df['gluc'] > 1).astype(int)
+df['cholesterol'] = (df['cholesterol'] > 1).astype(int)
 
 # 4
 def draw_cat_plot():
     # 5
-    df_cat = None
-
+    df_cat = pd.melt(df,id_vars=['cardio'],value_vars=['cholesterol','gluc','smoke','alco','active','overweight'])
+    df_cat = df_cat.groupby(['cholesterol','gluc','smoke','alco','active','overweight'])
 
     # 6
     df_cat = None

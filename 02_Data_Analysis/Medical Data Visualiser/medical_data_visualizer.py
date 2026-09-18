@@ -21,15 +21,17 @@ def draw_cat_plot():
     df_cat = df_cat.groupby(['cholesterol','gluc','smoke','alco','active','overweight'])
 
     # 6
-    df_cat = None
+    df_cat = df_cat = df_cat.groupby(['cardio','variable','value']).size().reset_index(name='total')
     
 
     # 7
+    cat_plot = sns.ccatplot(data=df_cat,kind='bar',x='variable',y='total',hue='value',col='cardio')
+    
 
 
 
     # 8
-    fig = None
+    fig = cat_plot.fig
 
 
     # 9
